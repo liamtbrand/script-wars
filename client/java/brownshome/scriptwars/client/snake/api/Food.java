@@ -13,4 +13,8 @@ public class Food extends GameObject{
 		_value = value;
 	}
 	
+	public FoodValue getValue(){
+		return _value;
+	}
+	
 }

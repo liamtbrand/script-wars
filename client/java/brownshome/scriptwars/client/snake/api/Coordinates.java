@@ -16,7 +16,12 @@ public class Coordinates {
 		return _y;
 	}
 	
-	public Coordinates applyVector(Vector v){
+	public Coordinates newCoordinatesFromVector(Vector v){
 		return new Coordinates(_x+v.getX(),_y+v.getY());
+	}
+	
+	public void applyVector(Vector v){
+		_x += v.getX();
+		_y += v.getY();
 	}
 }

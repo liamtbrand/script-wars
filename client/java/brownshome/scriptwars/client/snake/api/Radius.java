@@ -12,4 +12,8 @@ public class Radius {
 		return _radius;
 	}
 	
+	public void setRadius(double radius){
+		_radius = radius;
+	}
+	
 }
