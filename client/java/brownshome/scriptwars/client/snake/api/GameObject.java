@@ -18,6 +18,11 @@ public class GameObject {
 		return _collisionRadius;
 	}
 	
+	/**
+	 * Returns true if there is a collision between the two objects.
+	 * @param go
+	 * @return
+	 */
 	public boolean collisionWith(GameObject go){
 		
 		// If distance between is less than the sum of their colision radii, they have collided.
@@ -37,6 +42,19 @@ public class GameObject {
 		
 		// We must be close... Check for a collision.
 		return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2)) < distance;
+	}
+	
+	/**
+	 * Returns the direction to the object passed from the object called on.
+	 * @param go
+	 * @return
+	 */
+	public Direction getDirectionTo(GameObject go){
+		return new Direction(go._coords.getX()-_coords.getX(),go._coords.getY()-_coords.getY());
+	}
+	
+	public Direction getDirectionFrom(GameObject go){
+		return new Direction(_coords.getX()-go._coords.getX(),_coords.getY()-go._coords.getY());
 	}
 	
 }

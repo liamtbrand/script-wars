@@ -1,23 +1,24 @@
 package brownshome.scriptwars.client.snake.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Snake {
 	
+	public enum MoveSpeed{
+		SLOW, FAST;
+	}
+	
 	private String _displayName = "";
 	
 	public class UpdateFragment{
-		private Coordinates _updatedCoords;
+		private Direction _direction;
+		private MoveSpeed _speed;
 		private int _growth;
 		
-		public UpdateFragment(Coordinates updatedCoords, int growth){
-			_updatedCoords = updatedCoords; // New position of head
-			_growth = growth; // Amount to grow by
-		}
-		
-		public Coordinates getUpdatedCoords(){
-			return _updatedCoords;
+		public UpdateFragment(Direction direction, MoveSpeed speed, int growth){
+			_speed = speed; // Speed we are moving at.
+			_direction = direction; // Direction to move head.
+			_growth = growth; // Amount to grow by.
 		}
 		
 		public int getGrowth(){
@@ -41,6 +42,9 @@ public class Snake {
 	
 	/**
 	 * Moves the snake along the new updated coordinates.
+	 * Each segment should move in the direction of the one before it,
+	 * but it should not move the whole way. This slight reduction in distance
+	 * will cause the snake to be able to constrict when circling etc.
 	 * @param updateCoords
 	 */
 	public void applyUpdateFragments(List<UpdateFragment> updateFragments){
@@ -48,6 +52,7 @@ public class Snake {
 			
 			// Grow
 			for(int i = 0; i < updateFragment.getGrowth(); ++i){
+				// Get direction of tail.
 				
 			}
 			

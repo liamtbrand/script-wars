@@ -10,7 +10,9 @@ import brownshome.scriptwars.client.snake.api.Food;
 import brownshome.scriptwars.client.snake.api.Snake;
 
 /**
- * 
+ * This is the API for the snake game.
+ * <br>
+ * Note: This is currently under development.
  * 
  * @author Liam T. Brand
  *
@@ -23,6 +25,9 @@ public class SnakeAPI {
 	
 	// Snakes visible.
 	private Map<Integer,Snake> _snakes;
+	
+	// Myself
+	private int _myID;
 
 	private boolean _firstSend = false;
 	
