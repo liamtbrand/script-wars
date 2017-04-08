@@ -3,9 +3,9 @@ package brownshome.scriptwars.client.snake.api;
 public class GameObject {
 
 	private Coordinates _coords;
-	private double _collisionRadius;
+	private Radius _collisionRadius;
 	
-	public GameObject(Coordinates coords, double collisionRadius){
+	public GameObject(Coordinates coords, Radius collisionRadius){
 		_coords = coords;
 		_collisionRadius = collisionRadius;
 	}
@@ -14,7 +14,7 @@ public class GameObject {
 		return _coords;
 	}
 	
-	public double getCollisionRadius(){
+	public Radius getCollisionRadius(){
 		return _collisionRadius;
 	}
 	
@@ -26,7 +26,7 @@ public class GameObject {
 	public boolean collisionWith(GameObject go){
 		
 		// If distance between is less than the sum of their colision radii, they have collided.
-		double distance = _collisionRadius + go._collisionRadius;
+		double distance = _collisionRadius.getRadius() + go._collisionRadius.getRadius();
 		
 		// First try x distance
 		double xDistance = Math.abs(_coords.getX()-go._coords.getX());
@@ -44,17 +44,12 @@ public class GameObject {
 		return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2)) < distance;
 	}
 	
-	/**
-	 * Returns the direction to the object passed from the object called on.
-	 * @param go
-	 * @return
-	 */
-	public Direction getDirectionTo(GameObject go){
-		return new Direction(go._coords.getX()-_coords.getX(),go._coords.getY()-_coords.getY());
+	public Vector getVectorTo(GameObject go){
+		return new Vector(go._coords.getX()-_coords.getX(),go._coords.getY()-_coords.getY());
 	}
 	
-	public Direction getDirectionFrom(GameObject go){
-		return new Direction(_coords.getX()-go._coords.getX(),_coords.getY()-go._coords.getY());
+	public Vector getVectorFrom(GameObject go){
+		return new Vector(_coords.getX()-go._coords.getX(),_coords.getY()-go._coords.getY());
 	}
 	
 }

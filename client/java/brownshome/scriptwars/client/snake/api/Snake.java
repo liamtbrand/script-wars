@@ -11,30 +11,29 @@ public class Snake {
 	private String _displayName = "";
 	
 	public class UpdateFragment{
-		private Direction _direction;
+		private UnitVector _direction;
 		private MoveSpeed _speed;
 		private int _growth;
 		
-		public UpdateFragment(Direction direction, MoveSpeed speed, int growth){
+		public UpdateFragment(UnitVector direction, MoveSpeed speed, int growth){
 			_speed = speed; // Speed we are moving at.
 			_direction = direction; // Direction to move head.
 			_growth = growth; // Amount to grow by.
-		}
-		
-		public int getGrowth(){
-			return _growth;
 		}
 	}
 	
 	public class Segment extends GameObject{
 		
-		public Segment(Coordinates c, double size){
-			super(c,size);
+		public Segment(Coordinates c, Radius r){
+			super(c,r);
 		}
 		
 	}
 	
+	// Tail at 0, Head at _segments.size()-1.
 	private List<Segment> _segments;
+	private Radius _segmentRadius;
+	private static final double _movement = 0.95;
 	
 	public Snake(List<Segment> segments){
 		_segments = segments;
@@ -51,12 +50,21 @@ public class Snake {
 		for(UpdateFragment updateFragment : updateFragments){
 			
 			// Grow
-			for(int i = 0; i < updateFragment.getGrowth(); ++i){
+			for(int i = 0; i < updateFragment._growth; ++i){
 				// Get direction of tail.
-				
+				Vector v = _segments.get(1).getVectorTo(_segments.get(0));
+				v.toUnitVector().scaleBy(0.5); // Make vector of length 0.5.
+				// Add the new segment.
+				Segment last = _segments.get(0);
+				_segments.add(0,new Segment(last.getCoordinates().applyVector(v),_segmentRadius));
 			}
 			
 			// Move
+			UnitVector direction = updateFragment._direction;
+			if(updateFragment._speed == MoveSpeed.SLOW){
+				Vector v = _segments.get(_segments.size()-1).getVectorTo(_segments.get(_segments.size()-2));
+				v.scaleBy(_movement);
+			}
 			
 			Coordinates lastCoords;
 			for(Segment segment : _segments){

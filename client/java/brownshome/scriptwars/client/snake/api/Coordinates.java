@@ -15,4 +15,8 @@ public class Coordinates {
 	public double getY(){
 		return _y;
 	}
+	
+	public Coordinates applyVector(Vector v){
+		return new Coordinates(_x+v.getX(),_y+v.getY());
+	}
 }

@@ -9,7 +9,7 @@ public class Food extends GameObject{
 	private FoodValue _value;
 	
 	public Food(Coordinates coords, FoodValue value){
-		super(coords,1);
+		super(coords,new Radius(1));
 		_value = value;
 	}
 	
