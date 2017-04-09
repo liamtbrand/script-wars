@@ -39,7 +39,7 @@ public class SnakeAPI {
 	private ConnectionStatus _connStatus;
 	
 	public SnakeAPI(int id, String address, int port, String username) {
-		Network.connect(id, address, port, username);
+		Network.connect(id, address, username);
 		initializeConnection();
 		_firstSend = true;
 		_connStatus = ConnectionStatus.CONNECTED;
