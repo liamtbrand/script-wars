@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import brownshome.scriptwars.client.Network;
-import brownshome.scriptwars.client.snake.api.Food;
-import brownshome.scriptwars.client.snake.api.Snake;
 import brownshome.scriptwars.client.tankapi.TankAPI.ConnectionStatus;
+import brownshome.scriptwars.common.game.snake.Food;
+import brownshome.scriptwars.common.game.snake.Snake;
 
 /**
  * This is the API for the snake game.

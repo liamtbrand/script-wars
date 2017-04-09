@@ -1,4 +1,4 @@
-package brownshome.scriptwars.client.snake.api;
+package brownshome.scriptwars.common.game.snake;
 
 public class Vector extends Coordinates {
 	
