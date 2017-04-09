@@ -8,6 +8,7 @@ import java.util.Map;
 import brownshome.scriptwars.client.Network;
 import brownshome.scriptwars.client.snake.api.Food;
 import brownshome.scriptwars.client.snake.api.Snake;
+import brownshome.scriptwars.client.tankapi.TankAPI.ConnectionStatus;
 
 /**
  * This is the API for the snake game.
@@ -20,6 +21,10 @@ import brownshome.scriptwars.client.snake.api.Snake;
 
 public class SnakeAPI {
 	
+	public enum ConnectionStatus{
+		CONNECTED, DROPPED;
+	}
+	
 	// Food on the map. Maps food_id to Food.
 	private Map<Integer,Food> _food;
 	
@@ -31,10 +36,13 @@ public class SnakeAPI {
 
 	private boolean _firstSend = false;
 	
+	private ConnectionStatus _connStatus;
+	
 	public SnakeAPI(int id, String address, int port, String username) {
 		Network.connect(id, address, port, username);
 		initializeConnection();
 		_firstSend = true;
+		_connStatus = ConnectionStatus.CONNECTED;
 	}
 	
 	private void initializeConnection(){
@@ -66,18 +74,19 @@ public class SnakeAPI {
 	 * the main code of the AI. See the example AI.
 	 * @return True when we have entered into the next game tick.
 	 */
-	public boolean nextTick(){
+	public ConnectionStatus nextTick(){
 
-		// Set the data to be sent.
 		setSendData();
 
-		while(!Network.nextTick()){
+		if(Network.nextTick()){
 			// Wait for next tick...
+		}else{
+			_connStatus = ConnectionStatus.DROPPED;
 		}
 
 		// Receive all data.
 
-		return true;
+		return _connStatus;
 	}
 	
 }

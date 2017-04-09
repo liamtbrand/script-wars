@@ -11,7 +11,7 @@ public class ExampleSnakeAI {
 
 		SnakeAPI api = new SnakeAPI(id, "13.55.154.170", 35565, "John Smith");
 
-		while(api.nextTick()) {
+		while(api.nextTick() == SnakeAPI.ConnectionStatus.CONNECTED) {
 
 			
 			
