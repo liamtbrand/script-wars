@@ -13,7 +13,7 @@ public class ExampleSnakeAI {
 
 		while(api.nextTick() == SnakeAPI.ConnectionStatus.CONNECTED) {
 
-			
+			// Changes!
 			
 		}
 	}

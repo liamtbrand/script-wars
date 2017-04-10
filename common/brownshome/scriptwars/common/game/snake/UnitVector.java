@@ -4,7 +4,7 @@ public class UnitVector extends Vector{
 
 	/**
 	 * Direction will be stored as a unit vector.
-	 * @param c
+	 * @param v
 	 */
 	public UnitVector(Vector v){
 		super((v.getLength() > 0 ? v.getX()/v.getLength() : 0),(v.getLength() > 0 ? v.getY()/v.getLength() : 0));

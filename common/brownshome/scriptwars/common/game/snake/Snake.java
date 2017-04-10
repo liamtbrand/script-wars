@@ -79,7 +79,7 @@ public class Snake {
 	 * Each segment should move in the direction of the one before it,
 	 * but it should not move the whole way. This slight reduction in distance
 	 * will cause the snake to be able to constrict when circling etc.
-	 * @param updateCoords
+	 * @param updateFragments
 	 */
 	public void applyUpdateFragments(List<UpdateFragment> updateFragments){
 		for(UpdateFragment updateFragment : updateFragments){
